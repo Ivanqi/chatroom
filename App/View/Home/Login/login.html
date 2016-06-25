@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户登陆</title>
+	<link rel="stylesheet" href="<?php echo _PUBLIC_;?>css/style.css">
+</head>
+<body>
+	<div class="login">
+		<form action="<?php echo U('login/loginAct')?>" method="post">
+			<b>已注册的用户，请从这里登陆</b>
+			<p>用户名: <input type="text" name="username" class="text"></p>
+			<p>密&nbsp;&nbsp; 码: <input type="password" name="password" class="text"></p>
+			<p> <label><input type="checkbox" checked> 记住登陆</label> &nbsp;&nbsp;&nbsp;如果你尚未注册，请点击 <a  style="color:#13B3B7"href="<?php echo U('login/reg')?>">这里</a></p>
+			<p><button type="submit" class="button">登陆</button></p>
+		</form>
+	</div>
+</body>
+</html>

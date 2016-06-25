@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ivan_聊天系统</title>
+	<link rel="stylesheet" href="<?php echo _PUBLIC_;?>css/style.css">
+	<script src="<?php echo _PUBLIC_;?>js/jquery.js"></script>
+</head>
+<body>
+	<div class="header">
+		<div class="tips"></div>
+	</div>
+	<div class="layout">
+		<div class="talk">
+			<h1>公共聊天区</h1>
+			<div id="commentmsgzone"></div>
+			<br />
+			<input type="hidden" id="user" value="<?php echo $this->data['user']['m_name'];?>" />
+			<input type="hidden" id="ip" value="<?php echo $this->data['user']['m_ip'];?>">
+			<input type="text" id="content" class="msgcomment"  />
+			<input  class="msgbutton" type="button" value="发送" onclick="sendMsg()" />
+		</div>
+		<div class="firend">
+			<p class="title"> <a href="<?php echo U('login/loginout')?>" class="loginout">用户退出</a><a href="<?php echo U('index/userEdit')?>" class="loginout userEdit">用户编辑</a><?php echo $this->data['user']['m_name'];?></p>
+			<p class="myfirendtitle">我的朋友</p>
+			<div class="myfirend">
+				<ul class="myfirendUl">
+					<?php foreach($this->data['firendlist'] as $v){?>
+					<li id="User_<?php echo $v['m_id'];?>">
+						<button  class="deletefirend" onclick="deleteFirend(this)">删除好友</button>
+						<a href="javascript:;" onclick="windowOpen(this)"><?php echo $v['m_name']?></a>
+						<span></span>
+					</li>
+					<?php }?>
+				</ul>
+			</div>
+			<p class="nearbytitle">附近的人</p>
+			<div class="nearby">
+				<ul class="nearbyUl">
+					<?php foreach($this->data['userlist'] as $v){?>
+					<li id="User_<?php echo $v['m_id'];?>">
+						<button  class="addfirend" onclick="addfirend(this)">添加好友</button>
+						<p><?php echo $v['m_name'];?></p>
+						<span></span>
+					</li>
+					<?php }?>
+				</ul>
+			</div>
+		</div>
+		<div style="clean:both"></div>
+
+	</div>
+
+	<script>
+		var ip   = $('#ip').val();
+		var ask = "<?php echo $this->data['user']['m_name'];?>";
+
+		//发送信息
+		function sendMsg(){
+			var user 	=	$('#user').val();
+			var content =	$('#content').val();
+
+			if(content == ''){
+				alert('内容不能为空');
+				return false;
+			}
+
+			$.post("<?php echo U('index/ChatInsert')?>",{name:user,ip:ip,content:content},function(res){
+				$('#content').val('');
+			});
+		}
+
+		//增加朋友
+		function addfirend(e){
+			var my_id 		= 	<?php echo $this->data['user']['m_id']?>;
+			var my_name 	=	"<?php echo $this->data['user']['m_name'];?>";
+			var firendname  =	e.parentNode.getElementsByTagName('p')[0].innerHTML;
+			$.post("<?php echo U('index/addFirend')?>",{id:my_id,name:my_name,firend:firendname},function(res){
+				if(res !=''){
+					alert(res);
+				}else{
+					alert('操作失误，请重新操作');
+				}
+			});
+		}
+
+		//单聊窗口
+		function windowOpen(obj){
+			var name = obj.innerHTML;
+			obj.parentNode.getElementsByTagName('span')[0].className = 'remove';
+			window.open("<?php echo U('SingleChat/index')?>/firendname/"+name,'_blank','height=630,width=595,width');
+		}
+
+		//公共聊天区
+		var setting ={
+		   	url: "<?php echo U('index/ChatSelect')?>",
+		   	dataType:'text',
+		   	success: function(res){
+		   		json = eval('['+res+']');
+		   		html = '';
+		   		for(var i in json){
+		   			var classn =	'';
+		   			if(ip == json[i]['c_ip']){ classn = 'rightspan'}
+		   			html += '<p class="msgbox"><span class="msgspan '+classn+'"><b>';
+		   			html +=	json[i]['c_name']+' &nbsp;&nbsp;'+json[i]['c_ip']
+		   			html += '&nbsp;&nbsp;'+json[i]['c_time']+'</b>&nbsp;&nbsp;说<br />'
+		   			html += json[i]['c_content']+'</span></p><div style="clear:both"></div>';
+		   		}
+		   		$('#commentmsgzone').html(html);
+		   		$('#commentmsgzone').animate({scrollTop:$('#commentmsgzone')[0].scrollHeight},10);
+		    	window.setTimeout(function() {$.ajax(setting);},1000);
+		   	}
+		};
+		$.ajax(setting);
+
+
+		//查看是否有添加邀请
+		var getFirend = {
+			type: "POST",
+		   	url: "<?php echo U('index/checkFirendRequest')?>",
+		  	data:'ask='+ask,
+		   	dataType:'text',
+		   	success: function(res){
+		    	if(res != ' '){
+					$('.tips').html('<a style="color:red" href="<?php echo U('index/addFirendShow');?>">你有'+res+'条新的好友请求信息</a>');
+				}
+	    	 	window.setTimeout(function() {$.ajax(getFirend)},15000);
+		   	}
+		};
+		$.ajax(getFirend);
+
+		//附近的人是否在线
+		var nearby = {
+			url:"<?php echo U('index/nearbyExists');?>",
+			dataType:'text',
+			success:function(res){
+				if(res != ''){
+					json = eval('['+res+']');
+		   			html = '';
+			   		for(var i in json){
+			   			html += '<li id="User_'+json[i]['m_id']+'">';
+						html += '<button  class="addfirend" onclick="addfirend(this)">添加好友</button>';
+						html += '<p>'+json[i]['m_name']+'</p>'
+						html +=	'<span></span>';
+						html += '</li>';
+			   		}
+		   			$('.nearbyUl').html(html);
+				}else{
+					$('.nearbyUl').html(' ');
+				}
+		    	window.setTimeout(function() {$.ajax(nearby);},20000);
+			}};
+			$.ajax(nearby);
+
+		//请求响应
+		var Reresponse = {
+			type: "POST",
+		   	url: "<?php echo U('index/Reresponse')?>",
+		  	data:'ask='+ask+'pos='+user,
+		   	dataType:'json',
+		   	success: function(res){
+		    	if(res != ''){
+		    		if(res.model == 200){
+		    			alert(res.tips);
+		    			html = 	'';
+		    			html += '<li>';
+						html += '<button  class="deletefirend">删除好友</button>';
+						html += '<a href="javascript:;" onclick="windowOpen(this)">'+res.m_name+'</a>';
+						html += '<span></span>';
+						html += '</li>';
+
+						$(html).appendTo($('.myfirendUl'));
+						$('User_'+res.m_id).remove();
+		    		}else{
+		    			alert(res.tips);
+		    		}
+		    	}
+	    	 	window.setTimeout(function() { $.ajax(Reresponse) },20000);
+		   	}
+		}
+		$.ajax(Reresponse);
+
+		var firendList 	=	$('.myfirendUl a');
+		var userStr 	=	'';
+
+		for(var i = 0 ;i<firendList.length;i++){
+			userStr += firendList.eq(i).html()+',';
+		}
+		userStr = userStr.substr(0,userStr.length-1);
+
+		//判断是否有信息推送
+		var mesPush = {
+			type: "POST",
+		   	url: "<?php echo U('SingleChat/mesPush')?>",
+		  	data:'pos='+ask+'&rec='+userStr,
+		   	dataType:'text',
+		   	success: function(res){
+		   		if(res != ''){
+		   			var json = eval('['+res+']');
+			   		for(var i in json){
+			   			if(json[i]['stauts'] == 'ok'){
+			   				$('#User_'+json[i]['mId']+' span').eq(0).addClass('get').html('new');
+			   			}else{
+			   				$('#User_'+json[i]['mId']+' span').eq(0).removeClass('get').html('');
+
+			   			}
+			   		}
+			   		window.setTimeout(function() { $.ajax(mesPush)},30000);
+		   		}
+		   	}
+		}
+		$.ajax(mesPush);
+
+		//在线好友显示
+		var onlinefirend = {
+			type: "POST",
+		   	url: "<?php echo U('SingleChat/onlineFirend')?>",
+		  	//data:'pos='+ask+'&rec='+userStr,
+		   	dataType:'text',
+		   	success: function(res){
+		   		if(res != ''){
+		   			var json = eval('['+res+']');
+		   			var html = '';
+			   		for(var i in json){
+			 			html += '<li id="User_'+json[i]['m_id']+'">';
+						html += '<button  class="deletefirend" onclick="deleteFirend(this)">删除好友</button>';
+						html += '<a href="javascript:;" onclick="windowOpen(this)">'+json[i]['m_name']+'</a>';
+						html += '<span></span>';
+						html += '</li>';
+			   		}
+			   		$('.myfirendUl').html(html);
+			   		window.setTimeout(function() { $.ajax(onlinefirend)},40000);
+		   		}
+		   	}
+		};
+		$.ajax(onlinefirend);
+
+		//删除朋友
+		function deleteFirend(e){
+			var Li = e.parentNode;
+			var firend = Li.getElementsByTagName('a')[0].innerHTML;
+			var UL = Li.parentNode;
+
+			$.post("<?php echo U('index/firendDelte')?>",{'rec':firend,'self':ask},function(res){
+				if(res =='ok'){
+					alert('删除成功');
+					UL.removeChild(Li);
+				}else{
+					alert('删除失败');
+				}
+			});
+		}
+
+		$(function(){
+			$('.nearbytitle').on('click',function(){
+				$('.myfirend').slideToggle('slow',function(){});
+			});
+			$('.myfirendtitle').on('click',function(){
+				$('.myfirend').slideToggle('slow',function(){});
+			});
+			$('#commentmsgzone').animate({scrollTop:$('#commentmsgzone')[0].scrollHeight},10);
+
+			$(document).on('unload',function(){
+				alert('ccccc');
+			});
+		});
+	</script>
+</body>
+</html>

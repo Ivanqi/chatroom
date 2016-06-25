@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>左滑动删除特效</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <style>
+    *{ padding:0; 
+        margin:0; 
+        list-style: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .swipe-delete > li{
+        position: relative;
+        border-bottom: 1px solid #ccc;
+        margin:.2em 0;
+    }
+    
+    .con {width:100%;
+        display: block;
+        z-index: 100;
+        background-color:#eee;
+        position: relative;
+        left:0;
+        top:0;
+        -webkit-transition: all .2s linear;
+        transition: all .2s linear;
+    }
+    .dskls-eqwey{ float:left; }
+    .dskls-info{ float:left; margin-left:20px; }
+    .dskls-info li { height:25px; line-height: 30px;}
+    .btn{ position: absolute; top: 0; right: -80px; text-align: center; background: ##4BE0E5; color: #fff; width: 80px;}
+    .behind {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        line-height: 2.5em;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index:0;
+        -webkit-transition: all .2s linear;
+        transition: all .2s linear;
+    }
+    .behind a.ui-btn {
+        display: block;
+        height:100%;
+        line-height: 5em;
+        width: 5em;
+        margin: 0px;
+        float: right;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        
+    }
+    .behind a.delete-btn, .behind a.delete-btn:hover {
+        color: #fff;
+        background-color: orange;
+        text-shadow: none;
+
+    }
+    .behind a.ui-btn.pull-left {
+        float: left;
+    }
+    .interpre-left{float:left; color:#000; font-size:15px; width:80px; height:80px; text-align:center; line-height: 600%;}
+    .interpre-left span{ font-size:25px;}
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul class="swipe-delete">
+            <li>
+                <a href="#" class="con">
+                    <div class="interpre-left"><span>13</span>1月</div>
+                    <div class="dskls-eqwey">
+                    <img class="img1" src="http://cdn-img.easyicon.net/png/11995/1199561.gif" width="80px" height="83px"></div>
+                    <ul class="dskls-info">
+                        <li>三星手机</li>
+                        <li>安卓手机，双卡双待</li>
+                        <li>￥400 @100</li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </a>
+                <div class="behind">
+                    <a href="#" class="ui-btn delete-btn">删除</a>
+                </div>
+            </li>
+            <li>
+                <div class="behind">
+                    <a href="#" class="ui-btn delete-btn">删除</a>
+                </div>
+                <a href="#" class="con">
+                    <div class="interpre-left"><span>13</span>1月</div>
+                    <div class="dskls-eqwey">
+                    <img class="img1" src="http://cdn-img.easyicon.net/png/11995/1199561.gif" width="80px" height="83px"></div>
+                    <ul class="dskls-info">
+                        <li>三星手机</li>
+                        <li>安卓手机，双卡双待</li>
+                        <li>￥400 @100</li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </a>
+            </li>
+            <li>
+                <div class="behind">
+                    <a href="#" class="ui-btn delete-btn">删除</a>
+                </div>
+                <a href="#" class="con">
+                    <div class="interpre-left"><span>13</span>1月</div>
+                    <div class="dskls-eqwey">
+                    <img class="img1" src="http://cdn-img.easyicon.net/png/11995/1199561.gif" width="80px" height="83px"></div>
+                    <ul class="dskls-info">
+                        <li>三星手机</li>
+                        <li>安卓手机，双卡双待</li>
+                        <li>￥400 @100</li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </a>
+            </li>
+            <li>
+                <div class="behind">
+                    <a href="#" class="ui-btn delete-btn">删除</a>
+                </div>
+                <a href="#" class="con">
+                    <div class="interpre-left"><span>13</span>1月</div>
+                    <div class="dskls-eqwey">
+                    <img class="img1" src="http://cdn-img.easyicon.net/png/11995/1199561.gif" width="80px" height="83px"></div>
+                    <ul class="dskls-info">
+                        <li>三星手机</li>
+                        <li>安卓手机，双卡双待</li>
+                        <li>￥400 @100</li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </a>
+            </li>
+            <li>
+                <div class="behind">
+                    <a href="#" class="ui-btn delete-btn">删除</a>
+                </div>
+                <a href="#" class="con">
+                    <div class="interpre-left"><span>13</span>1月</div>
+                    <div class="dskls-eqwey">
+                    <img class="img1" src="http://cdn-img.easyicon.net/png/11995/1199561.gif" width="80px" height="83px"></div>
+                    <ul class="dskls-info">
+                        <li>三星手机</li>
+                        <li>安卓手机，双卡双待</li>
+                        <li>￥400 @100</li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </a>
+            </li>
+            <li>
+                <div class="behind">
+                    <a href="#" class="ui-btn delete-btn">删除</a>
+                </div>
+                <a href="#" class="con">
+                    <div class="interpre-left"><span>13</span>1月</div>
+                    <div class="dskls-eqwey">
+                    <img class="img1" src="http://cdn-img.easyicon.net/png/11995/1199561.gif" width="80px" height="83px"></div>
+                    <ul class="dskls-info">
+                        <li>三星手机</li>
+                        <li>安卓手机，双卡双待</li>
+                        <li>￥400 @100</li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </a>
+            </li>
+            <li>
+                <div class="behind">
+                    <a href="#" class="ui-btn delete-btn">删除</a>
+                </div>
+                <a href="#" class="con">
+                    <div class="interpre-left"><span>13</span>1月</div>
+                    <div class="dskls-eqwey">
+                    <img class="img1" src="http://cdn-img.easyicon.net/png/11995/1199561.gif" width="80px" height="83px"></div>
+                    <ul class="dskls-info">
+                        <li>三星手机</li>
+                        <li>安卓手机，双卡双待</li>
+                        <li>￥400 @100</li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </a>
+            </li>
+                        <li>
+                <div class="behind">
+                    <a href="#" class="ui-btn delete-btn">删除</a>
+                </div>
+                <a href="#" class="con">
+                    <div class="interpre-left"><span>13</span>1月</div>
+                    <div class="dskls-eqwey">
+                    <img class="img1" src="http://cdn-img.easyicon.net/png/11995/1199561.gif" width="80px" height="83px"></div>
+                    <ul class="dskls-info">
+                        <li>三星手机</li>
+                        <li>安卓手机，双卡双待</li>
+                        <li>￥400 @100</li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </a>
+            </li>
+                        <li>
+                <div class="behind">
+                    <a href="#" class="ui-btn delete-btn">删除</a>
+                </div>
+                <a href="#" class="con">
+                    <div class="interpre-left"><span>13</span>1月</div>
+                    <div class="dskls-eqwey">
+                    <img class="img1" src="http://cdn-img.easyicon.net/png/11995/1199561.gif" width="80px" height="83px"></div>
+                    <ul class="dskls-info">
+                        <li>三星手机</li>
+                        <li>安卓手机，双卡双待</li>
+                        <li>￥400 @100</li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+<!--script src="jquery-1.8.2.min.js"></script-->
+<!--script src="jquery.mobile.min.js"></script--> 
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    $('.com').width($(document).width());
+    function prevent_default(e) {
+        e.preventDefault();
+    }
+
+    function disable_scroll() {
+        $(document).on('touchmove', prevent_default);
+    }
+
+    function enable_scroll() {
+        $(document).unbind('touchmove', prevent_default)
+    }
+
+    var x;
+    $('.swipe-delete li > a').on('touchstart', function(e) {
+
+        $('.swipe-delete li > a.open').css('left','0px').removeClass('open');
+        $(e.currentTarget).addClass('open');
+        //console.log('currentTarget',e.currentTarget); //a标签
+        x = e.originalEvent.targetTouches[0].pageX;
+        //console.log('originalEvent',e.originalEvent.targetTouches[0]); //touches数组对象获得屏幕上所有的touch，取第一个touch
+
+    }).on('touchmove', function(e) {
+        var change      =   e.originalEvent.targetTouches[0].pageX - x;
+        console.log('ch',change);
+        var delWidth    =   $(".delete-btn").width();
+        //console.log(delWidth);
+        //a标签进行滑动
+        if(change < -10 ){
+           change = Math.min(Math.max(-delWidth,change),delWidth);
+            e.currentTarget.style.left = change + 'px';
+            if (change < -10) disable_scroll();
+        }
+
+    }).on('touchend', function(e) {
+
+        var left = parseInt(e.currentTarget.style.left)
+        var new_left;
+        if (left < -35) {
+            new_left = '-5em'
+        } else if (left > 35) {
+            new_left = '5em'
+        } else {
+            new_left = '0'
+        }
+        $(e.currentTarget).animate({left: new_left}, 100);
+        enable_scroll();
+
+    });
+
+        $('li .delete-btn').on('touchend', function(e) {
+            e.preventDefault();
+            var height = $(this).parents('li').height();
+            $(this).parents('li').css({
+                    height:height,
+                    overflow:"hidden"
+                }).animate({
+                height:0
+            },200, function() {
+                $(this).remove()
+            })
+        })
+
+       /* $('li .edit-btn').on('touchend', function(e) {
+            e.preventDefault()
+            $(this).parents('li').children('a').html('edited')
+        })*/
+
+});
+(function(){
+    var control = navigator.control || {};
+    if(control.gesture){
+    control.gesture(false);
+    }
+})();
+</script>
+
+</html>

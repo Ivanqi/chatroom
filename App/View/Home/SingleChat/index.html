@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>你在与<?php echo isset($this->data['firendname'])?$this->data['firendname']:'';?>聊天</title>
+	<link rel="stylesheet" href="<?php echo _PUBLIC_;?>css/style.css">
+	<script src="<?php echo _PUBLIC_;?>js/jquery.js"></script>
+</head>
+<body>
+	<div class="singleChat">
+		<input type="hidden" class="self" value="<?php echo $this->data['selfname'];?>" />
+		<input type="hidden" class="firend" value="<?php echo $this->data['firendname']?>" />
+		<div class="sigleChatZone">
+		</div>
+		<input type="text" class="content" value="" />
+		<button class="chatSend">发送</button>
+	</div>
+	<script>
+		var self 	=	$('.self').val();
+		var firend  =	$('.firend').val();
+
+		$('.chatSend').on('click',function(){
+			var content = 	$('.content').val();
+			if(content == ''){
+				alert('聊天内容不能为空');
+				return false;
+			}
+			$.post("/index.php/SingleChat/SingleChatSendMes",{selfname:self,firendname:firend,cont:content},function(res){
+				if(res == 'ok'){
+					$('.content').val('');
+					$("<p class='right'><b>"+self+"</b> <br />"+content+"</p>").appendTo($('.sigleChatZone'));
+				}else{
+					alert('聊天对象不能少');
+				}
+			});
+		});
+
+		//信息查询长轮询
+		var getMes ={
+		   type: "POST",
+		   url: "/index.php/SingleChat/SingleChatGetMes",
+		   data:'pos='+self+'&rec='+firend,
+		   dataType:'json',
+		   success: function(res){
+		    	$("<p><b>"+res.ms_rec+"</b> <br />"+res.ms_content+"</p>").appendTo($('.sigleChatZone'));
+		    	$('.sigleChatZone').animate({scrollTop:$('.sigleChatZone')[0].scrollHeight},10);
+		    	window.setTimeout(function() {$.ajax(getMes)}, 1000);
+		   }
+		};
+		$.ajax(getMes);
+
+
+		$(function(){
+			$('.sigleChatZone').animate({scrollTop:$('.sigleChatZone')[0].scrollHeight},10);
+		});
+	</script>
+</body>
+</html>

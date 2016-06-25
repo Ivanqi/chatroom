@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+<title>左滑动删除特效</title>
+
+<style>
+	*{ padding:0; margin:0; list-style: none;}
+	.list-ul{ overflow: hidden;}
+	.list-li{ line-height: 60px; border-bottom: 1px solid #fcfcfc; position:relative;padding: 0 12px; color: #666;
+		background: #f2f2f2;
+		-webkit-transform: translateX(0px);
+	}
+	.con {width:100%;}
+	.dskls-eqwey{ float:left; }
+	.dskls-info{ float:left; margin-left:20px; }
+	.dskls-info li { height:20px}
+	.btn{ position: absolute; top: 0; right: -80px; text-align: center; background: #ffcb20; color: #fff; width: 80px;}
+</style>
+</head>
+<body>
+
+<section class="list">
+    <ul class="list-ul">
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#f" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+        <li id="li" class="list-li">
+        	<div class="con">
+        		<div class="dskls-eqwey">
+        		<img class="img1" src="#" width="80px" height="80px"></div>
+        		<ul class="dskls-info">
+        			<li>三星手机</li>
+        			<li>安卓手机，双卡双待</li>
+        			<li>￥400 @100</li>
+        		</ul>
+        		<div style="clear:both"></div>
+        	</div>
+        	 <div class="btn" ontouchend="delete_currentItemList(this);">删除</div>
+        </li>
+    </ul>
+</section>
+<!--script src="<?php #echo _PUBLIC_;?>js/jquery.js"></script-->
+<script>
+	var getLiClass;
+	function findLi(ele){
+		var ele = ele;
+		if(ele.className != 'underfined'){
+			if(ele.className == "list-li"){
+				getLiClass = ele;
+				return false;
+			}
+		}
+		ele = ele.parentNode;
+		findLi(ele);
+	}
+	window.addEventListener('load',function(){
+		var initX;
+		var moveX;
+		var X = 0;
+		var objX = 0;
+		window.addEventListener('touchstart',function(event){
+			//event.preventDefault();
+			//return false;
+			var obj = event.target.parentNode;
+			findLi(obj);
+			obj = getLiClass;
+			if(obj.className == "list-li"){
+				initX = event.targetTouches[0].pageX;
+				objX =(obj.style.WebkitTransform.replace(/translateX\(/g,"").replace(/px\)/g,""))*1;
+				//console.log('dddd',initX,objX);
+			}
+			//return false;
+			if( objX == 0){
+				window.addEventListener('touchmove',function(event) {
+					//event.preventDefault();
+					var obj = event.target.parentNode;
+					findLi(obj);
+					obj = getLiClass;
+					if (obj.className == "list-li") {
+						moveX = event.targetTouches[0].pageX;
+						if(Math.abs(moveX - initX) < 30){
+							//console.log('false');
+							return false;
+						}
+						X = moveX - initX;
+						console.log('ccc','initX',initX,'moveX',moveX,'X',X);
+						if (X > 0) {
+							obj.style.WebkitTransform = "translateX(" + 0 + "px)";
+						}
+						else if (X < 0) {
+							var l = Math.abs(X);
+							obj.style.WebkitTransform = "translateX(" + -l + "px)";
+							if(l>80){
+								l=80;
+								obj.style.WebkitTransform = "translateX(" + -l + "px)";
+							}
+						}
+					}
+				});
+			}
+			else if(objX<0){
+				window.addEventListener('touchmove',function(event) {
+					//event.preventDefault();
+					var obj = event.target.parentNode;
+					findLi(obj);
+					obj = getLiClass;
+					if (obj.className == "list-li") {
+						moveX = event.targetTouches[0].pageX;
+						if(Math.abs(moveX - initX) < 5){
+							console.log('false');
+							return false;
+						}
+						X = moveX - initX;
+						if (X > 0) {
+							var r = -80 + Math.abs(X);
+							obj.style.WebkitTransform = "translateX(" + r + "px)";
+							if(r>0){
+								r=0;
+								obj.style.WebkitTransform = "translateX(" + r + "px)";
+							}
+						}
+						else {     //向左滑动
+							obj.style.WebkitTransform = "translateX(" + -80 + "px)";
+						}
+					}
+				});
+			}
+
+		})
+		window.addEventListener('touchend',function(event){
+			//event.preventDefault();
+			var obj = event.target.parentNode;
+			findLi(obj);
+			obj = getLiClass;
+			if(obj.className == "list-li"){
+				objX =(obj.style.WebkitTransform.replace(/translateX\(/g,"").replace(/px\)/g,""))*1;
+				if(objX>-40){
+					obj.style.WebkitTransform = "translateX(" + 0 + "px)";
+				}else{
+					obj.style.WebkitTransform = "translateX(" + -80 + "px)";
+				}
+			}
+		 })
+
+	})
+
+//删除的代码.	
+function delete_currentItemList(obj){
+	$(obj).parent("li").remove();
+}
+</script>
+</body>
+</html>

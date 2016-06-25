@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>好友请求列表</title>
+	<link rel="stylesheet" href="<?php echo _PUBLIC_;?>css/style.css">
+	<script src="<?php echo _PUBLIC_;?>js/jquery.js"></script>
+</head>
+<body style="background:#F4F4F4;">
+	<div class="firendRequest">
+		<p class="title"><a href="<?php echo U('index/index')?>" class="back">返回</a>添加好友请求列表 </p>
+		<ul>
+			<?php foreach($this->data['firends'] as $v){?>
+			<li>
+				<p id=""><?php echo $v['m_name']?></p>
+				<span><?php echo date('Y年m月d日 H时h分s秒',$v['uf_time'])?></span>
+				<button  class="add">添加好友</button><button  class="refuse">拒绝请求</button>
+			</li>
+			<?php }?>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var that;
+		$('.add').on('click',function(){
+			var firend 	=	$(this).siblings('p').html();
+			that = $(this);
+			$.post("<?php echo U('index/requestDispose')?>",{mode:'add',name:firend},function(res){
+				if(res != ''){
+					alert(res);
+					that.context.parentElement.remove();
+				}else{
+					alert('操作失败，请重新尝试');
+				}
+			});
+		});
+
+		$('.refuse').on('click',function(){
+			var firend 	=	$(this).siblings('p').html();
+			that = $(this);
+			$.post("<?php echo U('index/requestDispose');?>",{name:firend,mode:'refuse'},function(res){
+				if(res != ''){
+					alert(res);
+					that.context.parentElement.remove();
+				}else{
+					alert('操作失败，请重新尝试');
+				}
+			});
+		});
+	</script>
+</body>
+</html>

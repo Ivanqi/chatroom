@@ -1,0 +1,90 @@
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, textarea, iframe, table, th, td { margin: 0; padding: 0; }
+h1,h2,h3,h4,h5,h6{ margin:0; padding:0; font-size:100%; font-weight:normal;}
+input, select, button, textarea { font-size: 12px; font-family:Arial, Helvetica, sans-serif;}
+ul,li,dl,dt,dd{ list-style:none; }
+img    { border: medium none;border:none }
+table  {border-collapse:collapse; }
+/*\5FAE\8F6F\96C5\9ED1  'SimSuncss'*/
+body   {  font-family:\5FAE\8F6F\96C5\9ED1,Arial, Helvetica, sans-serif;font-size: 12px;margin:0 auto;text-decoration: none;line-height:176%; }
+a{ color:#333; text-decoration:none; }
+html { height:100%;}
+.main{ margin: 0 auto;max-width:1440px;min-width:1160px }
+
+
+.main { background:#E7E8EB;padding:44px 0 70px 0 }
+
+
+.login { margin:10% auto;width:370px;height:auto;border:1px solid #979797;background:#fff;padding-top:20px; }
+.login b { margin:5px 0 40px 20px;display:block;font-size:16px }
+.login p { margin:5px 0 20px 40px;}
+
+.login .text { width:200px;height:22px;padding-left:2px; }
+.login .button { width:71px;height:28px;border:0;cursor:pointer;background:#2D8DD5;font-size:14px;color:#fff;line-height:28px;border-radius:3px; }
+
+.mainstitle { width:700px;font-size:22px;border-bottom:1px solid#555;display:block;height:40px;line-height:40px;margin:40px 0 0 20px; }
+.mains table { margin:20px 0 0 20px;font-size:14px }
+.mains table tr { height:40px }
+
+.addStu { width:400px;height:300px;padding:20px; }
+.addStu b{ font-size:22px;border-bottom:1px solid#555;display:block;height:40px;line-height:40px;margin-bottom:25px }
+.addStu form p { margin: 15px 0;font-size:16px }
+.addStu form p input { width:200px;height:20px;padding-left:2px; }
+.addStu form p .age { width:92px }
+.addStu form p select { width:90px;height:20px; }
+.addStu .Stusubmit { width:75px;height:30px;border:0;cursor:pointer;background:#2D8DD5;font-size:14px;color:#fff;line-height:28px;border-radius:3px;margin-top:20px; }
+
+.delSubmit { width:40px;height:25px;border:0;cursor:pointer;background:#f00;font-size:12px;color:#fff;line-height:20px;border-radius:3px; }
+
+.page a { color:#13B3B7;}
+
+.header{ height:30px;margin:10px auto;width: 1200px;}
+.tips  { float:right;font-size:14px;}
+
+/*公共聊天区*/
+.layout { width: 1200px;height:550px;margin:10px auto }
+.talk{ width:720px;height:400px;margin:5px;float:left;}
+.talk h1{ font-size:25px;text-align:center;margin:15px 0;}
+#commentmsgzone { width:100%;height:100%;overflow:auto;border:1px solid #79ECD2; }
+.msgbox { margin:15px 0;padding:0 3px; }
+.msgspan{ display:block; width:383px;border:1px solid #ccc;padding:5px 5px;background:#D9D9D9;border-radius:10px }
+.rightspan { float:right;background:#79ECD2;color:#525252; }
+#commentmsgzone b{ color:#000  }
+.talk .msgcomment { width:590px;height:25px;padding:5px;border:1px solid #999; }
+.talk .msgbutton { width:70px;height:35px;line-height:35px;background:#109B9E;border:0;cursor:pointer;font-size:16px;color:#fff;margin:5px 0 0 20px; }
+.talk .msgbutton:hover { background:#0D7679;}
+
+/*朋友显示区*/
+.firend{ width:280px;height:530px;border:1px solid #ccc;border-radius:4px;float:right;margin:5px;overflow:hidden; }
+.firend .loginout{ height:16px;line-height:15px;border:0;background:#f00;padding:5px;border-radius:4px;color:#fff;float:right;cursor:pointer;display:block;font-size:14px;margin-right:5px }
+.firend .userEdit { background:#109B9E;}
+.firend .title { font-size:22px;padding:10px 0 0 20px;height:30px;line-height:30px;border-bottom:1px dotted #ccc;background:#CACACA; }
+.firend .nearbytitle,.firend .myfirendtitle{ font-size:18px;padding:10px 0 0 20px;height:30px;line-height:30px;font-weight:bold;cursor:pointer; }
+.firend .nearby ul { margin:10px 0 0 25px;font-size:16px;height:400px;overflow:hidden; }
+.firend .nearby ul li { line-height:25px;background:#D7D7D7;margin:5px 0;padding:5px; }
+.firend .addfirend,.firend .deletefirend{ height:25px;line-height:15px;border:0;background:#13B3B7;padding:5px;border-radius:4px;color:#fff;float:right;cursor:pointer; }
+.firend .myfirend ul { margin:10px 0 0 25px;font-size:16px;height:400px;overflow:hidden; }
+.firend .myfirend ul li { height:25px;line-height:25px;background:#D7D7D7;margin:5px 0;padding:5px;position:relative; }
+.firend .myfirend ul li a:hover { color :#109B9E;}
+.firend .myfirend ul li span { width:28px;height:14px;display:block;border-radius:5px;position:absolute;top:11px;left:51px; }
+.firend .myfirend ul li .get {  background:#f00;color:#fff;font-size:10px;line-height:12px;text-align:center; }
+.firend .myfirend ul li .remove{ display:none }
+.firend .deletefirend { background:#f00;}
+
+/*好友请求区*/
+.firendRequest{ width:600px;height:600px;border:1px solid #999;margin:20px auto;overflow:auto; }
+.firendRequest .title{ font-size:18px;height:40px;font-weight:bold;line-height:40px;padding:0px 5px;border-bottom:1px solid #ccc }
+.firendRequest .title .back { width:50px;height:30px;line-height:30px;display:block;background:#f00;float:right;color:#fff;font-size:16px;text-align:center;margin-top:5px; }
+.firendRequest li { width:98%;height:80px;margin:15px 0;background:#D8D8D8;margin-left:5px; }
+.firendRequest li p{ font-size:16px;height:30px;line-height:30px;border-bottom:1px dotted #999;margin-bottom:10px;padding-left:5px;font-weight:bold; }
+.firendRequest li span{ display:block;float:right;color:#000;margin-right:5px }
+.firendRequest li .add,.firendRequest li .refuse {  height:30px;line-height:20px;border:0;background:#13B3B7;padding:5px;border-radius:4px;color:#fff;cursor:pointer;margin-left:5px; }
+.firendRequest li .refuse { background:#f00; }
+
+/*单聊区*/
+.singleChat{ width:575px;height:605px;margin:0 auto;overflow:hidden; }
+.singleChat .sigleChatZone { width: 551px;height: 520px;margin: 11px;border:1px solid #109B9E;overflow:auto; }
+.sigleChatZone p { width:300px;border:1px solid #ccc;padding:0 0 10px 5px;margin:10px;border-radius:4px;float:left;clear:both }
+.sigleChatZone .right { float:right;background:#79ECD2;color:#525252; }
+.singleChat input { width:440px;height:26px;margin-left:10px;padding-left:5px; }
+.singleChat button { width:100px;height:30px;background:#109B9E;border:0;cursor:pointer;font-size:16px;color:#fff; }
+.singleChat button:hover{ background:#0D7679;}

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="refresh" content="<?php echo $second;?>;url=<?php echo $url;?>"/>
+	<title>网页标题</title>
+	<meta name="keywords" content="关键字列表" />
+	<meta name="description" content="网页描述" />
+	<link rel="stylesheet" type="text/css" href="" />
+	<style type="text/css">
+	#box{
+			width:300px;
+			height:230px;
+			border:1px solid red;
+			margin:0 auto;
+		}
+		.head{
+			background:#f90;
+			height:30px;
+			text-align:center;
+			line-height:30px;
+			letter-spacing:5px;
+			color:white;
+			}
+		.mess{
+			width:300px;
+			height:200px;
+			line-height:200px;
+			text-align:center;
+		}
+	</style>
+	<script type="text/javascript">
+		<?php echo "var i=$second;";?>
+		window.onload=function(){
+			var objSecond=document.getElementById("second");
+			function startMove(){
+				i--;
+				objSecond.innerHTML=i;
+			}
+			setInterval(startMove,1000);
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div class="head">系统提示信息...</div>
+		<div class="mess">
+		<?php
+			echo $mess;
+		?>
+		<span id="second"><?php echo $second;?></span>
+		</div>
+	</div>
+</body>
+</html>
